@@ -75,7 +75,7 @@ function App() {
     // let tasksForTodolist = tasks; // переносим в map
 
 
-    function changeFilter(value: FilterValuesType) {
+    function changeFilter(todolistID:string, value: FilterValuesType) {
         // setFilter(value);
     }
 
@@ -94,7 +94,10 @@ function App() {
                 }
 
                 return (
-                    <Todolist title={mapTodolists.title}
+                    <Todolist
+                        key={mapTodolists.id}
+                        todolistID={mapTodolists.id}
+                        title={mapTodolists.title}
                               tasks={tasksForTodolist}
                               removeTask={removeTask}
                               changeFilter={changeFilter}
