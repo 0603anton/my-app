@@ -76,7 +76,15 @@ function App() {
 
 
     function changeFilter(todolistID:string, value: FilterValuesType) {
-        // setFilter(value);
+        setTodolists([...todolists, todolists.map((filtered)=> filtered.id === todolistID ? {...filtered, filter: value} : filtered)])
+
+        // setTodolists(todolists.map((todo)=>{
+        //     if (todo.id === todolistID){
+        //         return (
+        //            {...todo, todo.filter = value}
+        //         )
+        //     }
+        // }))
     }
 
 // при создании туду через мап дпустил ошибку стал работать с данными, которые к таскам относятся,
