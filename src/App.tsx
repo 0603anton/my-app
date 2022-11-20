@@ -51,7 +51,8 @@ function App() {
     });
 
 
-    function removeTask(id: string) {
+    function removeTask(todolistID:string,id: string) {
+        setTasks({...tasks, [todolistID]: tasks[todolistID].filter(t => t.id != id)})
         // let filteredTasks = tasks.filter(t => t.id != id);
         // setTasks(filteredTasks);
     }
@@ -72,17 +73,22 @@ function App() {
     }
 
 
-    // let tasksForTodolist = tasks; // переносим в map
+    // let tasksForTodolist = tasks; // переносим в map которая уже в компоненте
 
 
     function changeFilter(todolistID:string, value: FilterValuesType) {
-        setTodolists([...todolists, todolists.map((filtered)=> filtered.id === todolistID ? {...filtered, filter: value} : filtered)])
+        // деструктуризация не нужна мап и так новый массив возвращает
+        setTodolists(todolists.map((filtered)=> filtered.id === todolistID ? {...filtered, filter: value} : filtered))
 
-        // setTodolists(todolists.map((todo)=>{
-        //     if (todo.id === todolistID){
+
+        //мой вариант решения без тернарника, как я изначально подумал сделать
+        // setTodolists(todolists.map((todoElem)=>{
+        //     if (todoElem.id === todolistID){
         //         return (
-        //            {...todo, todo.filter = value}
+        //            {...todoElem, filter:value}
         //         )
+        //     } else{
+        //         return todoElem;
         //     }
         // }))
     }
