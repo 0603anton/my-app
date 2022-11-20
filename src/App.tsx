@@ -4,6 +4,7 @@ import {Todolist} from './Todolist';
 import {v1} from 'uuid';
 
 
+
 // при типизации объекта пишем все св-ва, а то что это будет массивом уже потом указываем там
 // где этот тип данных применяться будет. Т.е. не массив типизируем
 export type todolistsType = {
@@ -52,13 +53,17 @@ function App() {
 
 
     function removeTask(todolistID:string,id: string) {
-        setTasks({...tasks, [todolistID]: tasks[todolistID].filter(t => t.id != id)})
-        // let filteredTasks = tasks.filter(t => t.id != id);
+        setTasks({...tasks, [todolistID]: tasks[todolistID].filter(t => t.id !== id)})
+        // let filteredTasks = tasks.filter(t => t.id !== id);
         // setTasks(filteredTasks);
     }
 
-    function addTask(title: string) {
-        // let task = {id: v1(), title: title, isDone: false};
+    function addTask(todolistID:string,title: string) {
+        let task = {id: v1(), title: title, isDone: false};
+        // let newTasks = [...tasks[todolistID], task] // почти тут наколхозил, был близок к правильнмоу ответу
+        // console.log(newTasks)
+        setTasks({ [todolistID]: [...tasks[todolistID],task],...tasks})
+        // console.log({...tasks})
         // let newTasks = [task, ...tasks];
         // setTasks(newTasks);
     }
